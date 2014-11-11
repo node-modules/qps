@@ -35,6 +35,9 @@ suite
   counter.plus();
   counter.get();
 })
+.add("counter.listAndResetOneMinuteBefore()", function() {
+  counter.listAndResetOneMinuteBefore();
+})
 
 // add listeners
 .on('cycle', function (event) {
@@ -48,6 +51,18 @@ suite
 })
 // run async
 .run({ 'async': false });
+
+// $ node benchmark/qps.js
+//
+//
+//   node version: v0.11.14, date: Tue Nov 11 2014 15:54:16 GMT+0800 (CST)
+//   Starting...
+//   4 tests completed.
+//
+//   counter.plus()                        x 3,117,962 ops/sec ±1.97% (91 runs sampled)
+//   counter.get()                         x 3,105,478 ops/sec ±2.65% (90 runs sampled)
+//   counter.plus(), counter.get()         x 1,637,585 ops/sec ±1.13% (90 runs sampled)
+//   counter.listAndResetOneMinuteBefore() x 3,179,284 ops/sec ±1.43% (90 runs sampled)
 
 // $ node benchmark/qps.js
 //

@@ -40,4 +40,29 @@ describe('qps.test.js', function () {
       done();
     }, 1000);
   });
+
+  it('should get one minute before qps', function () {
+    var counter = qps();
+    counter.plus();
+    counter.plus();
+    var qpsList = counter.listAndResetOneMinuteBefore();
+    qpsList.should.length(60);
+  });
+
+  it('should init with options.listener', function (done) {
+    var counter = qps({
+      listener: function (qpsList) {
+        qpsList.should.length(60);
+        counter.close();
+        // close again should work
+        counter.close();
+        done();
+      }
+    });
+    counter.plus();
+    counter.plus();
+    setTimeout(function () {
+      counter._onOneMinute();
+    }, 100);
+  });
 });

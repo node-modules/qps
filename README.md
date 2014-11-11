@@ -35,9 +35,9 @@ $ npm install qps
 ## Usage
 
 ```js
-var qps = require('qps');
+var QPSCounter = require('qps');
 
-var counter = qps();
+var counter = new QPSCounter();
 
 // plus one
 counter.plus();
@@ -48,13 +48,40 @@ counter.get();
 
 ## API
 
+### QPSCounter(options)
+
+Create a new qps counter with `options`.
+
+- options.listener: a `Function(qpsList)` to get one minute before qps list
+
+```js
+var counter = new QPSCounter({
+  // get qps list every minute
+  listener: function (qpsList) {
+    console.log('current process handler qps: %j', qpsList);
+    // [85,82,86,90,87,87,88,87,...,88]
+  }
+});
+
+// plus one when new request arrive
+counter.plus();
+```
+
 ### #plus()
 
 Plus one request
 
+```js
+counter.plus();
+```
+
 ### #get()
 
 Get current requests per second (QPS)
+
+```js
+console.log(counter.get());
+```
 
 ## License
 
