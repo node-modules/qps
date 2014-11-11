@@ -5,10 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha --check-leaks -R spec -t 5000 -r should test/*.test.js",
-    "test-cov": "node --harmony node_modules/.bin/istanbul cover node_modules/.bin/_mocha -- --check-leaks -t 5000 -r should test/*.test.js",
-    "test-travis": "node --harmony node_modules/.bin/istanbul cover node_modules/.bin/_mocha --report lcovonly -- --check-leaks -t 5000 -r should test/*.test.js",
+    "test-cov": "node node_modules/.bin/istanbul cover node_modules/.bin/_mocha -- --check-leaks -t 5000 -r should test/*.test.js",
+    "test-travis": "node node_modules/.bin/istanbul cover node_modules/.bin/_mocha --report lcovonly -- --check-leaks -t 5000 -r should test/*.test.js",
     "jshint": "jshint .",
-    "autod": "autod -w --prefix '~' && npm run cnpm",
+    "autod": "autod -w --prefix '~'",
     "cnpm": "npm install --registry=https://registry.npm.taobao.org",
     "contributors": "contributors -f plain -o AUTHORS"
   },
@@ -21,7 +21,7 @@
     "should": "*",
     "should-http": "*",
     "jshint": "*",
-    "istanbul-harmony": "*",
+    "istanbul": "*",
     "mocha": "*",
     "benchmark": "*",
     "beautify-benchmark": "*"

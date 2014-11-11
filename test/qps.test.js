@@ -19,9 +19,10 @@ var qps = require('../');
 describe('qps.test.js', function () {
   it('should plus work', function (done) {
     var counter = qps();
-    counter.plus();
+    counter.plus().should.equal(1);
     counter.get().should.equal(1);
-    counter.plus();
+    counter.plus().should.equal(2);
+
     counter.get().should.equal(2);
     counter.get().should.equal(2);
     counter.get().should.equal(2);
@@ -35,7 +36,7 @@ describe('qps.test.js', function () {
       counter.get().should.equal(1);
       counter.plus();
       counter.plus();
-      counter.plus();
+      counter.plus().should.equal(4);
       counter.get().should.equal(4);
       done();
     }, 1000);

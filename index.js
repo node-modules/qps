@@ -52,7 +52,7 @@ proto.plus = function () {
     this.ts[index][second] = now;
     this.counts[index][second] = 0;
   }
-  this.counts[index][second]++;
+  return ++this.counts[index][second];
 };
 
 proto.get = function () {
