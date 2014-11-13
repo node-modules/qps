@@ -43,7 +43,8 @@ function QPSCounter(options) {
 
 var proto = QPSCounter.prototype;
 
-proto.plus = function () {
+proto.plus = function (count) {
+  count = count || 1;
   var now = new Date();
   var index = now.getMinutes() % 2;
   var second = now.getSeconds();
@@ -52,7 +53,7 @@ proto.plus = function () {
     this.ts[index][second] = now;
     this.counts[index][second] = 0;
   }
-  return ++this.counts[index][second];
+  return (this.counts[index][second] += count);
 };
 
 proto.get = function () {

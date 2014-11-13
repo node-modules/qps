@@ -36,8 +36,8 @@ describe('qps.test.js', function () {
       counter.get().should.equal(1);
       counter.plus();
       counter.plus();
-      counter.plus().should.equal(4);
-      counter.get().should.equal(4);
+      counter.plus(2).should.equal(5);
+      counter.get().should.equal(5);
       done();
     }, 1000);
   });
