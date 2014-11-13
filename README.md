@@ -67,12 +67,16 @@ var counter = new QPSCounter({
 counter.plus();
 ```
 
-### #plus()
+### #plus([count])
 
 Plus one request
 
 ```js
+// plus one
 counter.plus();
+
+// plus more
+counter.plus(100);
 ```
 
 ### #get()
