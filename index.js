@@ -44,7 +44,10 @@ function QPSCounter(options) {
 var proto = QPSCounter.prototype;
 
 proto.plus = function (count) {
-  count = count || 1;
+  return this.get(count || 1);
+};
+
+proto.get = function (count) {
   var now = new Date();
   var index = now.getMinutes() % 2;
   var second = now.getSeconds();
@@ -53,17 +56,8 @@ proto.plus = function (count) {
     this.ts[index][second] = now;
     this.counts[index][second] = 0;
   }
-  return (this.counts[index][second] += count);
-};
-
-proto.get = function () {
-  var now = new Date();
-  var index = now.getMinutes() % 2;
-  var second = now.getSeconds();
-  var now = Date.now();
-  if (now - this.ts[index][second] > 2000) {
-    this.ts[index][second] = now;
-    this.counts[index][second] = 0;
+  if (count) {
+    return (this.counts[index][second] += count);
   }
   return this.counts[index][second];
 };
