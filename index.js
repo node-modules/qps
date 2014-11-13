@@ -44,15 +44,10 @@ function QPSCounter(options) {
 var proto = QPSCounter.prototype;
 
 proto.plus = function (count) {
-  return this._calc(count || 1);
+  return this.get(count || 1);
 };
 
-proto.get = function () {
-  return this._calc();
-
-};
-
-proto._calc = function (count) {
+proto.get = function (count) {
   var now = new Date();
   var index = now.getMinutes() % 2;
   var second = now.getSeconds();
